@@ -22,9 +22,14 @@ defineProps<{ title?: string; icon?: string }>();
   border-radius: var(--radius-lg);
   backdrop-filter: blur(12px);
   overflow: hidden;
-  transition: border-color 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
-.panel:hover { border-color: rgba(255, 30, 40, 0.25); }
+.panel:hover { 
+  border-color: rgba(255, 30, 40, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(255, 30, 45, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
 
 .panel-header {
   display: flex;

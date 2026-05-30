@@ -32,14 +32,31 @@ html, body { height: 100%; }
 body {
   font-family: var(--body);
   background-color: var(--bg);
-  background-image: linear-gradient(rgba(6, 0, 0, 0.8), rgba(6, 0, 0, 0.95)), url('/bg-cyberpunk.png');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(255, 30, 45, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(144, 0, 16, 0.2) 0%, transparent 50%),
+    linear-gradient(to bottom, var(--bg2) 0%, var(--bg) 100%);
   background-attachment: fixed;
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* CRT scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
 }
 
 /* ── Scrollbar ────────────────────────────────────────────── */
@@ -50,7 +67,7 @@ body {
 /* ── Selection ────────────────────────────────────────────── */
 ::selection { background: rgba(255, 30, 45, 0.2); color: var(--accent); }
 
-/* ── Animated grid background ─────────────────────────────── */
+/* ── Animated background layers ─────────────────────────────── */
 body::before {
   content: '';
   position: fixed;
@@ -61,6 +78,12 @@ body::before {
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
+  animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(40px); }
 }
 
 body::after {
@@ -68,11 +91,26 @@ body::after {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,30,45,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 80% at 100% 50%, rgba(255,74,90,0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 80% at 0% 80%, rgba(144,0,16,0.08) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,30,45,0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 100% 50%, rgba(255,74,90,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 0% 80%, rgba(144,0,16,0.1) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
+}
+
+/* ── Scanline overlay ───────────────────────────────────────── */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.15;
 }
 
 #app { position: relative; z-index: 1; min-height: 100vh; }

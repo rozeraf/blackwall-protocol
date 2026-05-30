@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <div class="scanlines"></div>
     <!-- ── Header ─────────────────────────────── -->
     <header class="header">
       <div class="header-inner">
@@ -124,6 +125,7 @@ const activeTab = ref('cipher');
   font-weight: 700;
   color: var(--text-bright);
   letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(255, 30, 45, 0.4);
 }
 .logo-sub {
   font-family: var(--mono);
@@ -168,9 +170,8 @@ const activeTab = ref('cipher');
   align-items: center;
   gap: 8px;
   padding: 14px 20px;
-  background: none;
+  background: transparent;
   border: none;
-  border-bottom: 2px solid transparent;
   color: var(--text-dim);
   font-family: var(--sans);
   font-size: 13px;
@@ -178,15 +179,33 @@ const activeTab = ref('cipher');
   letter-spacing: 1.5px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  bottom: -1px;
+  overflow: hidden;
 }
-.nav-tab:hover { color: var(--text); }
+.nav-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  box-shadow: var(--glow-sm);
+}
+.nav-tab:hover {
+  color: var(--text);
+  background: rgba(255, 30, 45, 0.05);
+}
 .nav-tab.active {
   color: var(--accent);
-  border-bottom-color: var(--accent);
-  text-shadow: 0 0 12px rgba(255, 30, 45, 0.5);
+  text-shadow: 0 0 12px rgba(255, 30, 45, 0.6);
+  background: linear-gradient(to top, rgba(255,30,45,0.1), transparent);
+}
+.nav-tab.active::after {
+  transform: translateX(0);
 }
 .tab-icon { font-size: 15px; }
 

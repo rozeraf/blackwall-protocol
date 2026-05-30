@@ -40,8 +40,8 @@ export function hash(data: Buffer, outputBits = 256): Buffer {
   if (outputBits / 8 <= HASH_BLOCK) return H.subarray(0, outputBits / 8);
 
   // Extend output beyond 256 bits via chained re-hashing
-  const parts = [H];
-  let prev = H;
+  const parts: Buffer[] = [H];
+  let prev: Buffer = H;
   let got = HASH_BLOCK;
   let idx = 0;
   while (got < outputBits / 8) {

@@ -1,116 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap');
 
 /* ── Reset & Base ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:          #060000;
-  --bg2:         #0a0101;
-  --surface:     rgba(20, 2, 2, 0.75);
-  --surface2:    rgba(255, 30, 40, 0.05);
-  --border:      rgba(255, 30, 40, 0.15);
-  --border-hi:   rgba(255, 30, 40, 0.5);
-  --accent:      #ff1e2d;
-  --accent2:     #ff4a5a;
-  --accent3:     #900010;
-  --danger:      #ff9900;
-  --text:        #e8c8cb;
-  --text-dim:    #8a5a5e;
-  --text-bright: #ffeaec;
-  --mono:        'Share Tech Mono', monospace;
-  --sans:        'Rajdhani', sans-serif;
-  --body:        'Inter', sans-serif;
-  --glow:        0 0 25px rgba(255, 30, 45, 0.4);
-  --glow-sm:     0 0 10px rgba(255, 30, 45, 0.5);
-  --glow2:       0 0 25px rgba(255, 74, 90, 0.3);
-  --radius:      10px;
-  --radius-lg:   16px;
+  /* Palette — derived from reference: deep matte black with crimson accent */
+  --bg:          #080404;
+  --bg2:         #0e0606;
+  --surface:     rgba(255, 255, 255, 0.03);
+  --surface-hi:  rgba(255, 255, 255, 0.06);
+  --border:      rgba(255, 255, 255, 0.07);
+  --border-hi:   rgba(220, 38, 38, 0.45);
+
+  --accent:      #dc2626;
+  --accent-dim:  rgba(220, 38, 38, 0.6);
+  --accent-mute: rgba(220, 38, 38, 0.12);
+  --danger:      #f59e0b;
+
+  --text:        #c9b8b8;
+  --text-dim:    #6b5555;
+  --text-muted:  #4a3535;
+  --text-bright: #f5eded;
+
+  --mono:   'JetBrains Mono', monospace;
+  --body:   'Inter', sans-serif;
+
+  --radius:    8px;
+  --radius-lg: 12px;
 }
 
 html, body { height: 100%; }
 
 body {
   font-family: var(--body);
-  background-color: var(--bg);
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(255, 30, 45, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(144, 0, 16, 0.2) 0%, transparent 50%),
-    linear-gradient(to bottom, var(--bg2) 0%, var(--bg) 100%);
-  background-attachment: fixed;
+  background: var(--bg);
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
-  position: relative;
+
+  /* Background: three-stop radial based on the reference image's color zones */
+  background-image:
+    radial-gradient(ellipse 120% 60% at 30% 0%,    rgba(180, 20, 20, 0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 60%  80% at 100% 60%,  rgba(120, 10, 10, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 80%  50% at 50% 100%,  rgba(60,  0,  0, 0.15) 0%, transparent 60%);
+  background-attachment: fixed;
 }
 
-/* CRT scanline overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 50%,
-    rgba(0, 0, 0, 0.25) 50%
-  );
-  background-size: 100% 4px;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.3;
-}
-
-/* ── Scrollbar ────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 3px; }
-
-/* ── Selection ────────────────────────────────────────────── */
-::selection { background: rgba(255, 30, 45, 0.2); color: var(--accent); }
-
-/* ── Animated background layers ─────────────────────────────── */
+/* ── Subtle grid overlay ─────────────────────────────────── */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,30,45,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,30,45,0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
   pointer-events: none;
   z-index: 0;
-  animation: grid-move 20s linear infinite;
 }
 
-@keyframes grid-move {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(40px); }
-}
-
+/* ── Vignette ──────────────────────────────────────────────── */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,30,45,0.15) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 80% at 100% 50%, rgba(255,74,90,0.1) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 80% at 0% 80%, rgba(144,0,16,0.1) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.5) 100%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* ── Scanline overlay ───────────────────────────────────────── */
-.scanlines {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 50%,
-    rgba(0, 0, 0, 0.25) 50%
-  );
-  background-size: 100% 4px;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.15;
-}
-
 #app { position: relative; z-index: 1; min-height: 100vh; }
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(220, 38, 38, 0.3); border-radius: 2px; }
+
+/* ── Selection ─────────────────────────────────────────────── */
+::selection { background: rgba(220, 38, 38, 0.25); color: var(--text-bright); }
+
+/* ── Global input/button resets ─────────────────────────────── */
+button { cursor: pointer; }
+textarea, input { font-family: var(--mono); }

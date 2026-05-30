@@ -1,52 +1,45 @@
 <template>
   <div class="app">
-    <div class="scanlines"></div>
-    <!-- ── Header ─────────────────────────────── -->
     <header class="header">
       <div class="header-inner">
         <div class="logo">
-          <div class="logo-icon">
-            <span class="logo-hex">BW</span>
-            <div class="logo-ring"></div>
+          <div class="logo-mark">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="1" y="1" width="18" height="18" stroke="currentColor" stroke-width="1.2" rx="2"/>
+              <path d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <circle cx="10" cy="10" r="2.5" fill="currentColor" opacity="0.4"/>
+            </svg>
           </div>
           <div class="logo-text">
-            <span class="logo-title">BLACKWALL</span>
-            <span class="logo-sub">CIPHER PROTOCOL v1.0</span>
+            <span class="logo-name">Blackwall</span>
+            <span class="logo-ver">v1.0</span>
           </div>
         </div>
-        <div class="header-status">
-          <span class="status-dot"></span>
-          <span class="status-text">SECURE CHANNEL</span>
+        <nav class="nav">
+          <button
+            v-for="tab in tabs"
+            :key="tab.id"
+            :class="['nav-tab', { active: activeTab === tab.id }]"
+            @click="activeTab = tab.id"
+          >{{ tab.label }}</button>
+        </nav>
+        <div class="header-end">
+          <span class="status-indicator"></span>
         </div>
       </div>
     </header>
 
-    <!-- ── Nav tabs ───────────────────────────── -->
-    <nav class="nav">
-      <div class="nav-inner">
-        <button
-          v-for="tab in tabs"
-          :key="tab.id"
-          :class="['nav-tab', { active: activeTab === tab.id }]"
-          @click="activeTab = tab.id"
-        >
-          <span class="tab-icon">{{ tab.icon }}</span>
-          <span class="tab-label">{{ tab.label }}</span>
-        </button>
-      </div>
-    </nav>
-
-    <!-- ── Content ────────────────────────────── -->
     <main class="main">
-      <CipherTab   v-if="activeTab === 'cipher'"      />
-      <HashTab     v-else-if="activeTab === 'hash'"   />
-      <MacTab      v-else-if="activeTab === 'mac'"    />
-      <FingerprintTab v-else-if="activeTab === 'fp'"  />
+      <CipherTab      v-if="activeTab === 'cipher'" />
+      <HashTab        v-else-if="activeTab === 'hash'" />
+      <MacTab         v-else-if="activeTab === 'mac'" />
+      <FingerprintTab v-else-if="activeTab === 'fp'" />
     </main>
 
-    <!-- ── Footer ────────────────────────────── -->
     <footer class="footer">
-      <span>Blackwall Cipher · 1024-bit Cellular Automaton · Adaptive Wolfram Rules</span>
+      <span>Blackwall · 1024-bit cellular automaton cipher</span>
+      <span class="footer-sep">·</span>
+      <span>Davies-Meyer hash · MAC</span>
     </footer>
   </div>
 </template>
@@ -59,10 +52,10 @@ import MacTab         from './components/MacTab.vue';
 import FingerprintTab from './components/FingerprintTab.vue';
 
 const tabs = [
-  { id: 'cipher', label: 'Stream Cipher', icon: '⚡' },
-  { id: 'hash',   label: 'Hash',          icon: '◈'  },
-  { id: 'mac',    label: 'MAC',           icon: '🔐' },
-  { id: 'fp',     label: 'Fingerprint',   icon: '◉'  },
+  { id: 'cipher', label: 'Cipher' },
+  { id: 'hash',   label: 'Hash'   },
+  { id: 'mac',    label: 'MAC'    },
+  { id: 'fp',     label: 'Fingerprint' },
 ];
 
 const activeTab = ref('cipher');
@@ -75,157 +68,104 @@ const activeTab = ref('cipher');
   min-height: 100vh;
 }
 
-/* ── Header ──────────────────────────────────── */
+/* ── Header ─────────────────────────────── */
 .header {
-  border-bottom: 1px solid var(--border);
-  background: rgba(6, 0, 0, 0.9);
-  backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 1px solid var(--border);
+  background: rgba(8, 4, 4, 0.85);
+  backdrop-filter: blur(16px) saturate(1.2);
 }
 .header-inner {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
-  height: 64px;
-  display: flex;
+  height: 56px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
+  gap: 32px;
 }
-.logo { display: flex; align-items: center; gap: 14px; }
-.logo-icon {
-  position: relative;
-  width: 40px; height: 40px;
-  display: flex; align-items: center; justify-content: center;
-}
-.logo-hex {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--accent);
-  letter-spacing: 1px;
-  position: relative;
-  z-index: 2;
-}
-.logo-ring {
-  position: absolute;
-  inset: 0;
-  border: 1.5px solid var(--accent);
-  border-radius: 50%;
-  box-shadow: var(--glow-sm), inset 0 0 12px rgba(255,30,40,0.15);
-  animation: spin 10s linear infinite;
-}
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-.logo-text { display: flex; flex-direction: column; gap: 1px; }
-.logo-title {
-  font-family: var(--sans);
-  font-size: 20px;
-  font-weight: 700;
+
+/* Logo */
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-mark { color: var(--accent); display: flex; }
+.logo-text { display: flex; align-items: baseline; gap: 6px; }
+.logo-name {
+  font-family: var(--body);
+  font-size: 15px;
+  font-weight: 600;
   color: var(--text-bright);
-  letter-spacing: 3px;
-  text-shadow: 0 0 10px rgba(255, 30, 45, 0.4);
+  letter-spacing: -0.02em;
 }
-.logo-sub {
+.logo-ver {
   font-family: var(--mono);
   font-size: 10px;
-  color: var(--text-dim);
-  letter-spacing: 2px;
-}
-.header-status { display: flex; align-items: center; gap: 8px; }
-.status-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-.status-text {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 2px;
+  color: var(--text-muted);
 }
 
-/* ── Nav ─────────────────────────────────────── */
+/* Nav */
 .nav {
-  border-bottom: 1px solid var(--border);
-  background: rgba(10, 1, 1, 0.6);
-  backdrop-filter: blur(8px);
-}
-.nav-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  gap: 4px;
-}
-.nav-tab {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 20px;
-  background: transparent;
+  gap: 2px;
+}
+.nav-tab {
+  padding: 6px 14px;
+  background: none;
   border: none;
+  border-radius: var(--radius);
   color: var(--text-dim);
-  font-family: var(--sans);
+  font-family: var(--body);
   font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
+  transition: color 0.15s, background 0.15s;
 }
-.nav-tab::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--accent);
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-  box-shadow: var(--glow-sm);
-}
-.nav-tab:hover {
-  color: var(--text);
-  background: rgba(255, 30, 45, 0.05);
-}
+.nav-tab:hover { color: var(--text); background: var(--surface-hi); }
 .nav-tab.active {
-  color: var(--accent);
-  text-shadow: 0 0 12px rgba(255, 30, 45, 0.6);
-  background: linear-gradient(to top, rgba(255,30,45,0.1), transparent);
+  color: var(--text-bright);
+  background: var(--accent-mute);
+  border: 1px solid rgba(220, 38, 38, 0.2);
 }
-.nav-tab.active::after {
-  transform: translateX(0);
-}
-.tab-icon { font-size: 15px; }
 
-/* ── Main ─────────────────────────────────────── */
+/* Right side */
+.header-end { display: flex; align-items: center; }
+.status-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.7;
+  box-shadow: 0 0 6px rgba(220, 38, 38, 0.6);
+  animation: breathe 3s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 0.9; }
+}
+
+/* ── Main ────────────────────────────────── */
 .main {
   flex: 1;
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
-  padding: 40px 24px;
+  padding: 32px 24px 48px;
 }
 
-/* ── Footer ──────────────────────────────────── */
+/* ── Footer ─────────────────────────────── */
 .footer {
   border-top: 1px solid var(--border);
-  padding: 16px 24px;
-  text-align: center;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 1px;
+  color: var(--text-muted);
 }
+.footer-sep { opacity: 0.3; }
 </style>

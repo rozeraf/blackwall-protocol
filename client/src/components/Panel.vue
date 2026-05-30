@@ -1,7 +1,6 @@
 <template>
   <div class="panel">
     <div v-if="title" class="panel-header">
-      <span class="panel-icon" v-if="icon">{{ icon }}</span>
       <span class="panel-title">{{ title }}</span>
       <slot name="header-extra" />
     </div>
@@ -20,34 +19,27 @@ defineProps<{ title?: string; icon?: string }>();
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: border-color 0.2s;
 }
-.panel:hover { 
-  border-color: rgba(255, 30, 40, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(255, 30, 45, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
+.panel:hover { border-color: rgba(220, 38, 38, 0.2); }
 
 .panel-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
-  padding: 14px 20px;
+  padding: 11px 16px;
   border-bottom: 1px solid var(--border);
-  background: rgba(255, 30, 40, 0.03);
 }
-.panel-icon { font-size: 16px; }
 .panel-title {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-dim);
-  flex: 1;
 }
-.panel-body { padding: 20px; }
+.panel-body { padding: 16px; }
 </style>

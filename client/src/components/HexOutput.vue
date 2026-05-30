@@ -7,13 +7,13 @@
           v-for="(chunk, i) in chunks"
           :key="i"
           class="hex-chunk"
-          :style="{ animationDelay: `${i * 0.02}s` }"
+          :style="{ animationDelay: `${i * 0.015}s` }"
         >{{ chunk }}</span>
       </template>
       <span v-else class="hex-placeholder">{{ placeholder || '—' }}</span>
     </div>
     <button v-if="value" class="copy-btn" @click="copy" :class="{ copied }">
-      {{ copied ? '✓ copied' : 'copy' }}
+      {{ copied ? '✓' : 'copy' }}
     </button>
   </div>
 </template>
@@ -31,7 +31,6 @@ const copied = ref(false);
 
 const chunks = computed(() => {
   if (!props.value) return [];
-  // split into groups of 8 hex chars (4 bytes)
   return props.value.match(/.{1,8}/g) ?? [];
 });
 
@@ -45,62 +44,66 @@ async function copy() {
 
 <style scoped>
 .hex-output {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 14px 16px;
+  padding: 12px 14px;
   position: relative;
-  min-height: 56px;
+  min-height: 52px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
-.hex-output.empty { opacity: 0.5; }
+.hex-output.empty { opacity: 0.4; }
 
 .hex-label {
   font-family: var(--mono);
   font-size: 10px;
-  color: var(--text-dim);
-  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: 2px;
 }
+
 .hex-value {
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--accent);
   word-break: break-all;
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  line-height: 1.6;
+  line-height: 1.7;
+  padding-right: 40px; /* space for copy button */
 }
 .hex-chunk {
-  animation: fadeIn 0.3s ease both;
+  animation: in 0.25s ease both;
 }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(2px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
+
 .hex-placeholder {
-  color: var(--text-dim);
-  font-size: 20px;
+  color: var(--text-muted);
+  font-size: 13px;
 }
+
 .copy-btn {
   position: absolute;
   top: 10px;
-  right: 12px;
+  right: 10px;
   background: none;
   border: 1px solid var(--border);
   border-radius: 4px;
-  color: var(--text-dim);
+  color: var(--text-muted);
   font-family: var(--mono);
   font-size: 10px;
-  padding: 3px 8px;
+  padding: 2px 8px;
   cursor: pointer;
-  transition: all 0.2s;
-  letter-spacing: 1px;
+  transition: all 0.15s;
+  letter-spacing: 0.04em;
 }
-.copy-btn:hover { border-color: var(--accent); color: var(--accent); }
-.copy-btn.copied { border-color: var(--accent); color: var(--accent); }
+.copy-btn:hover { border-color: rgba(220,38,38,0.3); color: var(--text-dim); }
+.copy-btn.copied { border-color: rgba(220,38,38,0.3); color: #f87171; }
 </style>

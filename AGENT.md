@@ -24,7 +24,9 @@ This project uses **[Bun](https://bun.sh)** as the runtime and package manager.
 
 ## Git Commits — Conventional Commits
 
-When asked to make a commit, follow these steps:
+When asked to make a commit, or periodically as you make meaningful progress on a task, follow these steps:
+
+0. **Make periodic commits:** Do not wait for the user to explicitly ask for a commit if you have reached a logical milestone. Commit frequently.
 
 1. **Check status & diff first:**
    ```bash

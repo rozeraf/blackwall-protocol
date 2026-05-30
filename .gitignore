@@ -114,3 +114,4 @@ dist
 
 # Antigravity cli files
 .antigravitycli
+*.png

@@ -11,7 +11,7 @@
     <div class="grid">
       <!-- ── Left: input ──────────────────────── -->
       <div class="col-left">
-        <Panel icon="📝" title="Input">
+        <Panel title="Input">
           <div class="input-type-row">
             <label class="field-label">Source</label>
             <div class="type-switch">
@@ -44,7 +44,7 @@
         <button class="demo-btn" @click="loadDemo">Load demo text</button>
 
         <!-- Meta info -->
-        <Panel icon="ℹ️" title="Fingerprint Info" v-if="fpResult">
+        <Panel title="Info" v-if="fpResult">
           <div class="meta-list">
             <div class="meta-row">
               <span class="meta-key">Rule</span>
@@ -55,7 +55,7 @@
               <span class="meta-val">{{ fpResult.paletteName }}</span>
             </div>
             <div class="meta-row">
-              <span class="meta-key">CA Width</span>
+              <span class="meta-key">CA width</span>
               <span class="meta-val">64 cells</span>
             </div>
             <div class="meta-row">
@@ -70,7 +70,7 @@
         </Panel>
 
         <!-- Hash output -->
-        <Panel icon="◈" title="Hash (256-bit)" v-if="fpResult">
+        <Panel title="Hash (256-bit)" v-if="fpResult">
           <HexOutput :value="fpResult.hex" />
         </Panel>
       </div>
@@ -89,7 +89,7 @@
 
           <div class="fp-loading" v-else-if="running">
             <div class="fp-spinner"></div>
-            <span>Computing CA evolution…</span>
+            <span>Computing…</span>
           </div>
 
           <div class="fp-result" v-else-if="fpResult">
@@ -101,7 +101,7 @@
         </div>
 
         <!-- Palette preview -->
-        <Panel icon="🎨" title="Color Palette" v-if="fpResult">
+        <Panel title="Color Palette" v-if="fpResult">
           <div class="palette-swatches">
             <div
               v-for="(color, i) in currentPalette"
@@ -115,7 +115,7 @@
         </Panel>
 
         <!-- Wolfram rule viz -->
-        <Panel icon="⚙️" title="Wolfram Rule Visualization" v-if="fpResult">
+        <Panel title="Wolfram Rule" v-if="fpResult">
           <div class="rule-viz">
             <div v-for="(bit, i) in ruleBits" :key="i" class="rule-cell">
               <div class="rule-pattern">
@@ -125,7 +125,7 @@
               <span class="rule-idx">{{ 7 - i }}</span>
             </div>
           </div>
-          <p class="rule-desc">Rule {{ fpResult.rule }} — Wolfram Elementary CA</p>
+          <p class="rule-desc">Rule {{ fpResult.rule }} — Elementary CA</p>
         </Panel>
       </div>
     </div>
@@ -215,51 +215,50 @@ function loadDemo() {
 </script>
 
 <style scoped>
-.fp-tab { display: flex; flex-direction: column; gap: 28px; }
+.fp-tab { display: flex; flex-direction: column; gap: 24px; }
 .tab-header { margin-bottom: 4px; }
 .tab-title {
-  font-family: var(--sans);
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   color: var(--text-bright);
-  letter-spacing: 2px;
-  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
 }
-.tab-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; max-width: 600px; }
+.tab-desc { font-size: 13px; color: var(--text-dim); line-height: 1.6; max-width: 520px; }
 
 .grid {
   display: grid;
   grid-template-columns: 360px 1fr;
-  gap: 20px;
+  gap: 16px;
   align-items: start;
 }
 @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
 
-.col-left, .col-right { display: flex; flex-direction: column; gap: 14px; }
+.col-left, .col-right { display: flex; flex-direction: column; gap: 12px; }
 
 .input-type-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .field-label {
   font-family: var(--mono);
   font-size: 10px;
   color: var(--text-dim);
-  letter-spacing: 1.5px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 .type-switch {
   display: flex;
-  gap: 4px;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.3);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 3px;
+  padding: 2px;
+  gap: 2px;
 }
 .type-switch button {
-  padding: 4px 12px;
+  padding: 3px 10px;
   background: none;
   border: none;
   border-radius: 4px;
@@ -267,145 +266,144 @@ function loadDemo() {
   font-family: var(--mono);
   font-size: 10px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s;
 }
-.type-switch button.active { background: rgba(255,30,40,0.15); color: var(--accent); }
+.type-switch button.active { background: var(--surface-hi); color: var(--text); }
 
 .field-textarea {
   width: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.35);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius);
   color: var(--text);
   font-family: var(--mono);
   font-size: 13px;
+  line-height: 1.5;
   padding: 10px 12px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.15s;
   resize: vertical;
 }
-.field-textarea:focus { border-color: var(--border-hi); }
-.field-textarea::placeholder { color: var(--text-dim); }
+.field-textarea:focus { border-color: rgba(220, 38, 38, 0.4); }
+.field-textarea::placeholder { color: var(--text-muted); }
 
 .file-drop {
-  border: 2px dashed var(--border);
-  border-radius: 8px;
-  padding: 32px 20px;
+  border: 1px dashed rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  padding: 28px 20px;
   text-align: center;
   color: var(--text-dim);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
   font-size: 13px;
+  font-family: var(--body);
 }
-.file-drop:hover { border-color: var(--border-hi); color: var(--text); }
-.file-icon { font-size: 28px; }
+.file-drop:hover { border-color: rgba(220, 38, 38, 0.3); color: var(--text); }
+.file-icon { font-size: 22px; opacity: 0.4; }
 
 .run-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 14px;
-  background: linear-gradient(135deg, rgba(255,30,40,0.15), rgba(255,74,90,0.06));
-  border: 1px solid var(--border-hi);
+  gap: 8px;
+  padding: 11px 20px;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
   border-radius: var(--radius);
-  color: var(--accent);
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  color: #f87171;
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: var(--glow-sm);
+  transition: all 0.15s;
 }
-.run-btn:hover:not(:disabled) { box-shadow: var(--glow); }
-.run-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.run-btn:hover:not(:disabled) {
+  background: rgba(220, 38, 38, 0.16);
+  border-color: rgba(220, 38, 38, 0.45);
+  color: var(--text-bright);
+}
+.run-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
 .demo-btn {
   align-self: flex-start;
-  padding: 8px 16px;
+  padding: 6px 14px;
   background: none;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius);
   color: var(--text-dim);
   font-family: var(--mono);
   font-size: 11px;
   cursor: pointer;
-  transition: all 0.2s;
-  letter-spacing: 1px;
+  transition: all 0.15s;
 }
-.demo-btn:hover { border-color: var(--accent); color: var(--accent); }
+.demo-btn:hover { border-color: rgba(220,38,38,0.3); color: var(--text); }
 
 /* Fingerprint display */
 .fp-display {
-  background: var(--surface);
+  background: rgba(0,0,0,0.2);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   aspect-ratio: 1;
-  max-width: 360px;
+  max-width: 340px;
   margin: 0 auto;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s;
+  transition: border-color 0.3s;
   overflow: hidden;
   position: relative;
 }
-.fp-display.has-result {
-  border-color: rgba(255,30,40,0.3);
-  box-shadow: 0 0 40px rgba(255,30,40,0.1), inset 0 0 40px rgba(0,0,0,0.4);
-}
+.fp-display.has-result { border-color: rgba(220, 38, 38, 0.2); }
 
 .fp-placeholder {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  color: var(--text-dim);
+  gap: 14px;
+  color: var(--text-muted);
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
 }
-.fp-ghost { position: relative; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; }
+.fp-ghost { position: relative; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; }
 .fp-ghost-ring {
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(255,30,40,0.2);
+  border: 1px solid rgba(220, 38, 38, 0.15);
   border-radius: 50%;
-  animation: ripple 3s ease-in-out infinite;
+  animation: ripple 4s ease-in-out infinite;
 }
 .fp-ghost-ring.r2 {
-  inset: -16px;
-  border-color: rgba(255,30,40,0.1);
-  animation-delay: 1.5s;
+  inset: -14px;
+  border-color: rgba(220, 38, 38, 0.07);
+  animation-delay: 2s;
 }
 @keyframes ripple {
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.1); opacity: 1; }
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.05); opacity: 0.8; }
 }
-.fp-ghost-text { font-size: 32px; color: rgba(255,30,40,0.3); }
+.fp-ghost-text { font-size: 24px; color: rgba(220, 38, 38, 0.2); }
 
 .fp-loading {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  color: var(--text-dim);
+  gap: 14px;
+  color: var(--text-muted);
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 11px;
 }
 .fp-spinner {
-  width: 40px; height: 40px;
-  border: 2px solid rgba(255,30,40,0.2);
-  border-top-color: var(--accent);
+  width: 32px; height: 32px;
+  border: 1.5px solid rgba(220, 38, 38, 0.15);
+  border-top-color: rgba(220, 38, 38, 0.6);
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: spin 0.9s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -413,77 +411,66 @@ function loadDemo() {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 16px;
+  gap: 10px;
+  padding: 12px;
   width: 100%;
 }
 .fp-img {
-  width: 256px;
-  height: 256px;
+  width: 240px;
+  height: 240px;
   image-rendering: pixelated;
   border-radius: 50%;
-  box-shadow: 0 0 30px rgba(255,30,40,0.2);
-  animation: fadeIn 0.4s ease;
+  animation: fadeIn 0.35s ease;
 }
-@keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .download-btn {
-  padding: 8px 20px;
+  padding: 6px 16px;
   background: none;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius);
   color: var(--text-dim);
   font-family: var(--mono);
   font-size: 11px;
   cursor: pointer;
-  transition: all 0.2s;
-  letter-spacing: 1px;
+  transition: all 0.15s;
   text-decoration: none;
   display: inline-block;
 }
-.download-btn:hover { border-color: var(--accent); color: var(--accent); }
+.download-btn:hover { border-color: rgba(220,38,38,0.3); color: var(--text); }
 
 /* Meta */
-.meta-list { display: flex; flex-direction: column; gap: 8px; }
+.meta-list { display: flex; flex-direction: column; gap: 7px; }
 .meta-row { display: flex; justify-content: space-between; align-items: center; }
-.meta-key { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
-.meta-val { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+.meta-key { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+.meta-val { font-family: var(--mono); font-size: 11px; color: var(--text); }
 
-/* Palette */
-.palette-swatches { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+/* Palette swatches */
+.palette-swatches { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 6px; }
 .swatch {
-  width: 28px; height: 28px;
-  border-radius: 4px;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: transform 0.2s;
+  width: 22px; height: 22px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.15s;
   cursor: default;
 }
-.swatch:hover { transform: scale(1.15); }
-.palette-name { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
+.swatch:hover { transform: scale(1.1); }
+.palette-name { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
 
 /* Rule viz */
-.rule-viz { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
-.rule-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
+.rule-viz { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+.rule-cell { display: flex; flex-direction: column; align-items: center; gap: 3px; }
 .rule-pattern { display: flex; gap: 2px; }
 .rule-bit {
-  width: 10px; height: 10px;
-  border-radius: 2px;
+  width: 8px; height: 8px;
+  border-radius: 1px;
   border: 1px solid var(--border);
 }
-.rule-bit.on  { background: var(--accent); box-shadow: 0 0 4px rgba(255,30,40,0.5); }
-.rule-bit.off { background: rgba(0,0,0,0.5); }
-.rule-output {
-  width: 22px; height: 10px;
-  border-radius: 2px;
-  border: 1px solid var(--border);
-}
-.rule-output.on  { background: var(--accent); box-shadow: 0 0 6px rgba(255,30,40,0.5); }
-.rule-output.off { background: rgba(0,0,0,0.5); }
-.rule-idx { font-family: var(--mono); font-size: 9px; color: var(--text-dim); }
-.rule-desc { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
+.rule-bit.on  { background: var(--accent); opacity: 0.7; }
+.rule-bit.off { background: rgba(255,255,255,0.04); }
+.rule-output { width: 18px; height: 8px; border-radius: 1px; border: 1px solid var(--border); }
+.rule-output.on  { background: var(--accent); opacity: 0.7; }
+.rule-output.off { background: rgba(255,255,255,0.04); }
+.rule-idx { font-family: var(--mono); font-size: 9px; color: var(--text-muted); }
+.rule-desc { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
 </style>

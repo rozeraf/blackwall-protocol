@@ -16,28 +16,28 @@ defineProps<{ title?: string; icon?: string }>();
 
 <style scoped>
 .panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  transition: border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-.panel:hover { border-color: var(--border-hi); }
 
 .panel-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
 }
 .panel-title {
   font-family: var(--mono);
   font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-dim);
 }
-.panel-body { padding: 16px; }
+.panel-body { 
+  background: var(--bg-offset);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
 </style>

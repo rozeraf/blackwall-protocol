@@ -208,18 +208,17 @@ function loadDemo() {
 /* Mode toggle */
 .mode-toggle {
   display: flex;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  background: var(--bg-offset);
+  border-radius: var(--radius-lg);
   padding: 4px;
   gap: 4px;
 }
 .mode-btn {
   flex: 1;
-  padding: 8px;
-  background: none;
+  padding: 10px;
+  background: transparent;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius);
   color: var(--text-dim);
   font-family: var(--body);
   font-size: 13px;
@@ -228,9 +227,8 @@ function loadDemo() {
   transition: all 0.15s;
 }
 .mode-btn.active {
-  background: var(--accent-mute);
+  background: var(--bg-hover);
   color: var(--text-bright);
-  border: 1px solid rgba(220, 38, 38, 0.2);
 }
 
 /* Field row header */
@@ -251,17 +249,16 @@ function loadDemo() {
 /* Segmented controls */
 .type-switch, .output-type-toggle {
   display: flex;
-  background: rgba(0,0,0,0.3);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: var(--bg-input);
+  border-radius: var(--radius);
   padding: 2px;
   gap: 2px;
 }
 .type-switch button, .output-type-toggle button {
-  padding: 3px 10px;
+  padding: 4px 12px;
   background: none;
   border: none;
-  border-radius: 4px;
+  border-radius: calc(var(--radius) - 2px);
   color: var(--text-dim);
   font-family: var(--mono);
   font-size: 10px;
@@ -269,27 +266,27 @@ function loadDemo() {
   transition: all 0.15s;
 }
 .type-switch button.active, .output-type-toggle button.active {
-  background: var(--surface-hi);
-  color: var(--text);
+  background: var(--bg-hover);
+  color: var(--text-bright);
 }
 
 /* Inputs */
 .field-textarea, .field-input {
   width: 100%;
-  background: rgba(0,0,0,0.35);
-  border: 1px solid var(--border);
+  background: var(--bg-input);
+  border: none;
   border-radius: var(--radius);
   color: var(--text);
   font-family: var(--mono);
   font-size: 13px;
   line-height: 1.5;
-  padding: 10px 12px;
+  padding: 12px 14px;
   outline: none;
-  transition: border-color 0.15s;
+  transition: background 0.15s;
   resize: vertical;
 }
 .field-textarea:focus, .field-input:focus {
-  border-color: rgba(220, 38, 38, 0.4);
+  background: var(--bg-hover);
 }
 .field-textarea::placeholder, .field-input::placeholder {
   color: var(--text-muted);
@@ -303,11 +300,11 @@ function loadDemo() {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 11px 20px;
-  background: rgba(220, 38, 38, 0.1);
-  border: 1px solid rgba(220, 38, 38, 0.3);
-  border-radius: var(--radius);
-  color: #f87171;
+  padding: 14px 20px;
+  background: var(--accent-mute);
+  border: none;
+  border-radius: var(--radius-lg);
+  color: var(--accent);
   font-family: var(--body);
   font-size: 13px;
   font-weight: 500;
@@ -315,8 +312,7 @@ function loadDemo() {
   transition: all 0.15s;
 }
 .run-btn:hover:not(:disabled) {
-  background: rgba(220, 38, 38, 0.16);
-  border-color: rgba(220, 38, 38, 0.45);
+  background: var(--accent);
   color: var(--text-bright);
 }
 .run-btn:disabled { opacity: 0.35; cursor: not-allowed; }
@@ -339,13 +335,12 @@ function loadDemo() {
   gap: 6px;
 }
 .stat {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 10px 12px;
+  background: var(--bg-offset);
+  border-radius: var(--radius-lg);
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 .stat-label {
   font-family: var(--mono);
@@ -360,7 +355,7 @@ function loadDemo() {
   color: var(--text-bright);
   font-weight: 500;
 }
-.stat-value.accent { color: #f87171; }
+.stat-value.accent { color: var(--accent); }
 
 .demo-note {
   font-size: 12px;
@@ -370,9 +365,9 @@ function loadDemo() {
 
 .demo-btn {
   align-self: flex-start;
-  padding: 6px 14px;
-  background: none;
-  border: 1px solid var(--border);
+  padding: 8px 16px;
+  background: var(--bg-offset);
+  border: none;
   border-radius: var(--radius);
   color: var(--text-dim);
   font-family: var(--mono);
@@ -380,6 +375,6 @@ function loadDemo() {
   cursor: pointer;
   transition: all 0.15s;
 }
-.demo-btn:hover { border-color: rgba(220,38,38,0.3); color: var(--text); }
+.demo-btn:hover { background: var(--bg-hover); color: var(--text-bright); }
 </style>
 

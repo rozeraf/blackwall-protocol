@@ -251,44 +251,44 @@ function loadDemo() {
 }
 .type-switch {
   display: flex;
-  background: rgba(0,0,0,0.3);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: var(--bg-input);
+  border-radius: var(--radius);
   padding: 2px;
   gap: 2px;
 }
 .type-switch button {
-  padding: 3px 10px;
+  padding: 4px 12px;
   background: none;
   border: none;
-  border-radius: 4px;
+  border-radius: calc(var(--radius) - 2px);
   color: var(--text-dim);
   font-family: var(--mono);
   font-size: 10px;
   cursor: pointer;
   transition: all 0.15s;
 }
-.type-switch button.active { background: var(--surface-hi); color: var(--text); }
+.type-switch button.active { background: var(--bg-hover); color: var(--text-bright); }
 
 .field-textarea {
   width: 100%;
-  background: rgba(0,0,0,0.35);
-  border: 1px solid var(--border);
+  background: var(--bg-input);
+  border: none;
   border-radius: var(--radius);
   color: var(--text);
   font-family: var(--mono);
   font-size: 13px;
   line-height: 1.5;
-  padding: 10px 12px;
+  padding: 12px 14px;
   outline: none;
-  transition: border-color 0.15s;
+  transition: background 0.15s;
   resize: vertical;
 }
-.field-textarea:focus { border-color: rgba(220, 38, 38, 0.4); }
+.field-textarea:focus { background: var(--bg-hover); }
 .field-textarea::placeholder { color: var(--text-muted); }
 
 .file-drop {
-  border: 1px dashed rgba(255,255,255,0.12);
+  border: 1px dashed var(--bg-hover);
+  background: var(--bg-offset);
   border-radius: var(--radius);
   padding: 28px 20px;
   text-align: center;
@@ -302,7 +302,7 @@ function loadDemo() {
   font-size: 13px;
   font-family: var(--body);
 }
-.file-drop:hover { border-color: rgba(220, 38, 38, 0.3); color: var(--text); }
+.file-drop:hover { border-color: var(--accent-mute); background: var(--bg-hover); color: var(--text); }
 .file-icon { font-size: 22px; opacity: 0.4; }
 
 .run-btn {
@@ -310,11 +310,11 @@ function loadDemo() {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 11px 20px;
-  background: rgba(220, 38, 38, 0.1);
-  border: 1px solid rgba(220, 38, 38, 0.3);
-  border-radius: var(--radius);
-  color: #f87171;
+  padding: 14px 20px;
+  background: var(--accent-mute);
+  border: none;
+  border-radius: var(--radius-lg);
+  color: var(--accent);
   font-family: var(--body);
   font-size: 13px;
   font-weight: 500;
@@ -322,17 +322,16 @@ function loadDemo() {
   transition: all 0.15s;
 }
 .run-btn:hover:not(:disabled) {
-  background: rgba(220, 38, 38, 0.16);
-  border-color: rgba(220, 38, 38, 0.45);
+  background: var(--accent);
   color: var(--text-bright);
 }
 .run-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
 .demo-btn {
   align-self: flex-start;
-  padding: 6px 14px;
-  background: none;
-  border: 1px solid var(--border);
+  padding: 8px 16px;
+  background: var(--bg-offset);
+  border: none;
   border-radius: var(--radius);
   color: var(--text-dim);
   font-family: var(--mono);
@@ -340,12 +339,11 @@ function loadDemo() {
   cursor: pointer;
   transition: all 0.15s;
 }
-.demo-btn:hover { border-color: rgba(220,38,38,0.3); color: var(--text); }
+.demo-btn:hover { background: var(--bg-hover); color: var(--text-bright); }
 
 /* Fingerprint display */
 .fp-display {
-  background: rgba(0,0,0,0.2);
-  border: 1px solid var(--border);
+  background: var(--bg-input);
   border-radius: var(--radius-lg);
   aspect-ratio: 1;
   max-width: 340px;
@@ -354,11 +352,11 @@ function loadDemo() {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.3s;
+  transition: background 0.3s;
   overflow: hidden;
   position: relative;
 }
-.fp-display.has-result { border-color: rgba(220, 38, 38, 0.2); }
+.fp-display.has-result { background: var(--bg-offset); }
 
 .fp-placeholder {
   display: flex;
@@ -374,20 +372,20 @@ function loadDemo() {
 .fp-ghost-ring {
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(220, 38, 38, 0.15);
+  border: 1px solid var(--bg-hover);
   border-radius: 50%;
   animation: ripple 4s ease-in-out infinite;
 }
 .fp-ghost-ring.r2 {
   inset: -14px;
-  border-color: rgba(220, 38, 38, 0.07);
+  border-color: rgba(255,255,255,0.03);
   animation-delay: 2s;
 }
 @keyframes ripple {
   0%, 100% { transform: scale(1); opacity: 0.4; }
   50% { transform: scale(1.05); opacity: 0.8; }
 }
-.fp-ghost-text { font-size: 24px; color: rgba(220, 38, 38, 0.2); }
+.fp-ghost-text { font-size: 24px; color: var(--text-muted); }
 
 .fp-loading {
   display: flex;
@@ -400,8 +398,8 @@ function loadDemo() {
 }
 .fp-spinner {
   width: 32px; height: 32px;
-  border: 1.5px solid rgba(220, 38, 38, 0.15);
-  border-top-color: rgba(220, 38, 38, 0.6);
+  border: 1.5px solid var(--bg-hover);
+  border-top-color: var(--accent);
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
 }
@@ -425,9 +423,9 @@ function loadDemo() {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .download-btn {
-  padding: 6px 16px;
-  background: none;
-  border: 1px solid var(--border);
+  padding: 8px 16px;
+  background: var(--bg-offset);
+  border: none;
   border-radius: var(--radius);
   color: var(--text-dim);
   font-family: var(--mono);
@@ -437,7 +435,7 @@ function loadDemo() {
   text-decoration: none;
   display: inline-block;
 }
-.download-btn:hover { border-color: rgba(220,38,38,0.3); color: var(--text); }
+.download-btn:hover { background: var(--bg-hover); color: var(--text-bright); }
 
 /* Meta */
 .meta-list { display: flex; flex-direction: column; gap: 7px; }
@@ -450,7 +448,6 @@ function loadDemo() {
 .swatch {
   width: 22px; height: 22px;
   border-radius: 3px;
-  border: 1px solid rgba(255,255,255,0.08);
   transition: transform 0.15s;
   cursor: default;
 }
@@ -464,13 +461,12 @@ function loadDemo() {
 .rule-bit {
   width: 8px; height: 8px;
   border-radius: 1px;
-  border: 1px solid var(--border);
 }
 .rule-bit.on  { background: var(--accent); opacity: 0.7; }
-.rule-bit.off { background: rgba(255,255,255,0.04); }
-.rule-output { width: 18px; height: 8px; border-radius: 1px; border: 1px solid var(--border); }
+.rule-bit.off { background: var(--bg-input); }
+.rule-output { width: 18px; height: 8px; border-radius: 1px; }
 .rule-output.on  { background: var(--accent); opacity: 0.7; }
-.rule-output.off { background: rgba(255,255,255,0.04); }
+.rule-output.off { background: var(--bg-input); }
 .rule-idx { font-family: var(--mono); font-size: 9px; color: var(--text-muted); }
 .rule-desc { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
 </style>

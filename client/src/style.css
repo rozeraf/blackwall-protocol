@@ -4,29 +4,26 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Palette — derived from reference: deep matte black with crimson accent */
-  --bg:          #080404;
-  --bg2:         #0b0606;
-  --surface:     rgba(15, 10, 10, 0.6);
-  --surface-hi:  rgba(25, 15, 15, 0.8);
-  --border:      rgba(255, 255, 255, 0.04);
-  --border-hi:   rgba(255, 255, 255, 0.12);
+  /* Palette — True Borderless Minimal */
+  --bg:          #0a0a0a;
+  --bg-offset:   #111111;
+  --bg-input:    #1a1a1a;
+  --bg-hover:    #222222;
 
-  --accent:      #b82c2c;
-  --accent-dim:  rgba(184, 44, 44, 0.5);
-  --accent-mute: rgba(184, 44, 44, 0.1);
-  --danger:      #d97706;
+  --accent:      #b93535;
+  --accent-hover:#d64040;
+  --accent-mute: rgba(185, 53, 53, 0.1);
 
-  --text:        #a89898;
-  --text-dim:    #756060;
-  --text-muted:  #503a3a;
-  --text-bright: #e8dede;
+  --text:        #cccccc;
+  --text-dim:    #808080;
+  --text-muted:  #555555;
+  --text-bright: #ffffff;
 
   --mono:   'JetBrains Mono', monospace;
   --body:   'Inter', sans-serif;
 
-  --radius:    6px;
-  --radius-lg: 10px;
+  --radius:    4px;
+  --radius-lg: 8px;
 }
 
 html, body { height: 100%; }

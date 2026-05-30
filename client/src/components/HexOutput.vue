@@ -44,8 +44,7 @@ async function copy() {
 
 <style scoped>
 .hex-output {
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--border);
+  background: var(--bg-input);
   border-radius: var(--radius);
   padding: 12px 14px;
   position: relative;
@@ -86,17 +85,17 @@ async function copy() {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: none;
-  border: 1px solid var(--border);
+  background: var(--bg-hover);
+  border: none;
   border-radius: 4px;
-  color: var(--text-muted);
+  color: var(--text-dim);
   font-family: var(--mono);
   font-size: 10px;
-  padding: 3px 8px;
+  padding: 4px 10px;
   cursor: pointer;
   transition: all 0.15s;
   letter-spacing: 0.04em;
 }
-.copy-btn:hover { border-color: var(--border-hi); color: var(--text-dim); }
-.copy-btn.copied { border-color: var(--accent); color: var(--accent); }
+.copy-btn:hover { background: var(--accent-mute); color: var(--text-bright); }
+.copy-btn.copied { background: var(--accent); color: var(--text-bright); }
 </style>

@@ -73,9 +73,7 @@ const activeTab = ref('cipher');
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid var(--border);
-  background: rgba(8, 4, 4, 0.85);
-  backdrop-filter: blur(16px) saturate(1.2);
+  background: var(--bg);
 }
 .header-inner {
   max-width: 1100px;
@@ -123,11 +121,10 @@ const activeTab = ref('cipher');
   cursor: pointer;
   transition: color 0.15s, background 0.15s;
 }
-.nav-tab:hover { color: var(--text); background: var(--surface-hi); }
+.nav-tab:hover { color: var(--text); background: var(--bg-hover); }
 .nav-tab.active {
   color: var(--text-bright);
-  background: var(--accent-mute);
-  border: 1px solid rgba(220, 38, 38, 0.2);
+  background: var(--bg-input);
 }
 
 /* Right side */
@@ -137,13 +134,12 @@ const activeTab = ref('cipher');
   height: 6px;
   border-radius: 50%;
   background: var(--accent);
-  opacity: 0.7;
-  box-shadow: 0 0 6px rgba(220, 38, 38, 0.6);
+  opacity: 0.8;
   animation: breathe 3s ease-in-out infinite;
 }
 @keyframes breathe {
   0%, 100% { opacity: 0.5; }
-  50%       { opacity: 0.9; }
+  50%       { opacity: 1; }
 }
 
 /* ── Main ────────────────────────────────── */
@@ -157,7 +153,7 @@ const activeTab = ref('cipher');
 
 /* ── Footer ─────────────────────────────── */
 .footer {
-  border-top: 1px solid var(--border);
+  background: var(--bg-offset);
   padding: 14px 24px;
   display: flex;
   align-items: center;

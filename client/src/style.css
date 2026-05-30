@@ -4,25 +4,25 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:          #050709;
-  --bg2:         #080c10;
-  --surface:     rgba(10, 20, 30, 0.7);
-  --surface2:    rgba(0, 255, 180, 0.04);
-  --border:      rgba(0, 255, 180, 0.15);
-  --border-hi:   rgba(0, 255, 180, 0.5);
-  --accent:      #00ffb4;
-  --accent2:     #00cfff;
-  --accent3:     #bf5fff;
-  --danger:      #ff4560;
-  --text:        #c8d8e8;
-  --text-dim:    #5a7a8a;
-  --text-bright: #eef6ff;
+  --bg:          #060000;
+  --bg2:         #0a0101;
+  --surface:     rgba(20, 2, 2, 0.75);
+  --surface2:    rgba(255, 30, 40, 0.05);
+  --border:      rgba(255, 30, 40, 0.15);
+  --border-hi:   rgba(255, 30, 40, 0.5);
+  --accent:      #ff1e2d;
+  --accent2:     #ff4a5a;
+  --accent3:     #900010;
+  --danger:      #ff9900;
+  --text:        #e8c8cb;
+  --text-dim:    #8a5a5e;
+  --text-bright: #ffeaec;
   --mono:        'Share Tech Mono', monospace;
   --sans:        'Rajdhani', sans-serif;
   --body:        'Inter', sans-serif;
-  --glow:        0 0 20px rgba(0, 255, 180, 0.3);
-  --glow-sm:     0 0 8px rgba(0, 255, 180, 0.4);
-  --glow2:       0 0 20px rgba(0, 207, 255, 0.25);
+  --glow:        0 0 25px rgba(255, 30, 45, 0.4);
+  --glow-sm:     0 0 10px rgba(255, 30, 45, 0.5);
+  --glow2:       0 0 25px rgba(255, 74, 90, 0.3);
   --radius:      10px;
   --radius-lg:   16px;
 }
@@ -43,7 +43,7 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 3px; }
 
 /* ── Selection ────────────────────────────────────────────── */
-::selection { background: rgba(0, 255, 180, 0.2); color: var(--accent); }
+::selection { background: rgba(255, 30, 45, 0.2); color: var(--accent); }
 
 /* ── Animated grid background ─────────────────────────────── */
 body::before {
@@ -51,8 +51,8 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,255,180,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,180,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255,30,45,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,30,45,0.05) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
@@ -63,9 +63,9 @@ body::after {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0,255,180,0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 80% at 100% 50%, rgba(0,207,255,0.05) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 80% at 0% 80%, rgba(191,95,255,0.04) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,30,45,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 100% 50%, rgba(255,74,90,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 0% 80%, rgba(144,0,16,0.08) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }

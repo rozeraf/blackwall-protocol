@@ -220,7 +220,7 @@ function loadDemo() {
   transition: all 0.2s;
 }
 .type-switch button.active, .bits-toggle button.active {
-  background: rgba(0, 255, 180, 0.15);
+  background: rgba(255, 30, 40, 0.15);
   color: var(--accent);
 }
 .field-textarea {
@@ -245,7 +245,7 @@ function loadDemo() {
   justify-content: center;
   gap: 10px;
   padding: 14px;
-  background: linear-gradient(135deg, rgba(0,255,180,0.15), rgba(0,207,255,0.1));
+  background: linear-gradient(135deg, rgba(255,30,40,0.15), rgba(255,74,90,0.06));
   border: 1px solid var(--border-hi);
   border-radius: var(--radius);
   color: var(--accent);
@@ -284,7 +284,7 @@ function loadDemo() {
 .avl-desc code {
   color: var(--accent2);
   font-family: var(--mono);
-  background: rgba(0,207,255,0.1);
+  background: rgba(255,74,90,0.1);
   padding: 1px 5px;
   border-radius: 3px;
 }
@@ -337,7 +337,7 @@ function loadDemo() {
   letter-spacing: 1px;
   border: 1px solid;
 }
-.badge-ok    { color: var(--accent);  border-color: rgba(0,255,180,0.3); background: rgba(0,255,180,0.07); }
+.badge-ok    { color: var(--accent);  border-color: rgba(255,30,40,0.3); background: rgba(255,30,40,0.07); }
 .badge-fail  { color: var(--danger);  border-color: rgba(255,69,96,0.3);  background: rgba(255,69,96,0.07); }
-.badge-info  { color: var(--accent2); border-color: rgba(0,207,255,0.3);  background: rgba(0,207,255,0.07); }
+.badge-info  { color: var(--accent2); border-color: rgba(255,74,90,0.3);  background: rgba(255,74,90,0.07); }
 </style>

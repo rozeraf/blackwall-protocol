@@ -24,7 +24,7 @@ defineProps<{ title?: string; icon?: string }>();
   overflow: hidden;
   transition: border-color 0.3s;
 }
-.panel:hover { border-color: rgba(0, 255, 180, 0.25); }
+.panel:hover { border-color: rgba(255, 30, 40, 0.25); }
 
 .panel-header {
   display: flex;
@@ -32,7 +32,7 @@ defineProps<{ title?: string; icon?: string }>();
   gap: 10px;
   padding: 14px 20px;
   border-bottom: 1px solid var(--border);
-  background: rgba(0, 255, 180, 0.03);
+  background: rgba(255, 30, 40, 0.03);
 }
 .panel-icon { font-size: 16px; }
 .panel-title {

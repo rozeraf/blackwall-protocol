@@ -37,7 +37,7 @@ export function renderFingerprint(hashBuf: Uint8Array): FingerprintResult {
   }
 
   const patterns: Uint8Array[] = [];
-  let state = initState;
+  let state: Uint8Array = initState;
   for (let y = 0; y < Q; y++) {
     const pats = new Uint8Array(Q);
     for (let i = 0; i < Q; i++) {

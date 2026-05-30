@@ -242,7 +242,7 @@ function loadDemo() {
   cursor: pointer;
   transition: all 0.2s;
 }
-.bits-toggle button.active { background: rgba(0,255,180,0.15); color: var(--accent); }
+.bits-toggle button.active { background: rgba(255,30,40,0.15); color: var(--accent); }
 
 .run-btn {
   display: flex;
@@ -250,7 +250,7 @@ function loadDemo() {
   justify-content: center;
   gap: 10px;
   padding: 14px;
-  background: linear-gradient(135deg, rgba(0,255,180,0.15), rgba(0,207,255,0.1));
+  background: linear-gradient(135deg, rgba(255,30,40,0.15), rgba(255,74,90,0.06));
   border: 1px solid var(--border-hi);
   border-radius: var(--radius);
   color: var(--accent);
@@ -293,7 +293,7 @@ function loadDemo() {
   letter-spacing: 1px;
   font-weight: bold;
 }
-.verify-badge.ok   { background: rgba(0,255,180,0.1); color: var(--accent); border: 1px solid rgba(0,255,180,0.3); }
+.verify-badge.ok   { background: rgba(255,30,40,0.1); color: var(--accent); border: 1px solid rgba(255,30,40,0.3); }
 .verify-badge.fail { background: rgba(255,69,96,0.1); color: var(--danger); border: 1px solid rgba(255,69,96,0.3); }
 .verify-btn {
   margin-top: 10px;
@@ -315,7 +315,7 @@ function loadDemo() {
 .alt-desc { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; }
 .diff-badge { margin-top: 10px; }
 .badge { padding: 5px 12px; border-radius: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 1px; border: 1px solid; display: inline-block; }
-.badge-ok { color: var(--accent); border-color: rgba(0,255,180,0.3); background: rgba(0,255,180,0.07); }
+.badge-ok { color: var(--accent); border-color: rgba(255,30,40,0.3); background: rgba(255,30,40,0.07); }
 
 .stats {
   display: grid;

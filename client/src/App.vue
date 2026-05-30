@@ -77,7 +77,7 @@ const activeTab = ref('cipher');
 /* ── Header ──────────────────────────────────── */
 .header {
   border-bottom: 1px solid var(--border);
-  background: rgba(5, 7, 9, 0.9);
+  background: rgba(6, 0, 0, 0.9);
   backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
@@ -111,7 +111,7 @@ const activeTab = ref('cipher');
   inset: 0;
   border: 1.5px solid var(--accent);
   border-radius: 50%;
-  box-shadow: var(--glow-sm), inset 0 0 12px rgba(0,255,180,0.1);
+  box-shadow: var(--glow-sm), inset 0 0 12px rgba(255,30,40,0.15);
   animation: spin 10s linear infinite;
 }
 @keyframes spin {
@@ -153,7 +153,7 @@ const activeTab = ref('cipher');
 /* ── Nav ─────────────────────────────────────── */
 .nav {
   border-bottom: 1px solid var(--border);
-  background: rgba(8, 12, 16, 0.6);
+  background: rgba(10, 1, 1, 0.6);
   backdrop-filter: blur(8px);
 }
 .nav-inner {
@@ -186,7 +186,7 @@ const activeTab = ref('cipher');
 .nav-tab.active {
   color: var(--accent);
   border-bottom-color: var(--accent);
-  text-shadow: 0 0 12px rgba(0, 255, 180, 0.5);
+  text-shadow: 0 0 12px rgba(255, 30, 45, 0.5);
 }
 .tab-icon { font-size: 15px; }
 

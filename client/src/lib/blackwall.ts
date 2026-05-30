@@ -3,7 +3,7 @@
  * Uses @noble/hashes for sync SHA-256 (no Node.js crypto dependency).
  */
 
-import { sha256 } from '@noble/hashes/sha2';
+import { sha256 } from '@noble/hashes/sha2.js';
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -154,7 +154,7 @@ export function hash(data: Uint8Array, outputBits = 256): Uint8Array {
   if (outputBits % 8 !== 0) throw new Error('outputBits must be a multiple of 8');
 
   const padded = dmPad(data);
-  let H = new Uint8Array(HASH_BLOCK);
+  let H: Uint8Array = new Uint8Array(HASH_BLOCK);
 
   for (let off = 0; off < padded.length; off += HASH_BLOCK) {
     const M = padded.slice(off, off + HASH_BLOCK);
@@ -164,8 +164,8 @@ export function hash(data: Uint8Array, outputBits = 256): Uint8Array {
 
   if (outputBits / 8 <= HASH_BLOCK) return H.slice(0, outputBits / 8);
 
-  const parts = [H];
-  let prev = H;
+  const parts: Uint8Array[] = [H];
+  let prev: Uint8Array = H;
   let got = HASH_BLOCK;
   let idx = 0;
   while (got < outputBits / 8) {

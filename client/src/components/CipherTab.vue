@@ -229,7 +229,7 @@ function loadDemo() {
   transition: all 0.2s;
 }
 .mode-btn.active {
-  background: rgba(0, 255, 180, 0.1);
+  background: rgba(255, 30, 40, 0.1);
   color: var(--accent);
   box-shadow: var(--glow-sm);
 }
@@ -267,7 +267,7 @@ function loadDemo() {
   transition: all 0.2s;
 }
 .type-switch button.active, .output-type-toggle button.active {
-  background: rgba(0, 255, 180, 0.15);
+  background: rgba(255, 30, 40, 0.15);
   color: var(--accent);
 }
 .output-type-toggle {
@@ -294,7 +294,7 @@ function loadDemo() {
 }
 .field-textarea:focus, .field-input:focus {
   border-color: var(--border-hi);
-  box-shadow: 0 0 0 2px rgba(0, 255, 180, 0.08);
+  box-shadow: 0 0 0 2px rgba(255, 30, 40, 0.08);
 }
 .field-textarea::placeholder, .field-input::placeholder { color: var(--text-dim); }
 
@@ -306,7 +306,7 @@ function loadDemo() {
   justify-content: center;
   gap: 10px;
   padding: 14px;
-  background: linear-gradient(135deg, rgba(0,255,180,0.15), rgba(0,207,255,0.1));
+  background: linear-gradient(135deg, rgba(255,30,40,0.15), rgba(255,74,90,0.06));
   border: 1px solid var(--border-hi);
   border-radius: var(--radius);
   color: var(--accent);
@@ -320,7 +320,7 @@ function loadDemo() {
   box-shadow: var(--glow-sm);
 }
 .run-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, rgba(0,255,180,0.25), rgba(0,207,255,0.18));
+  background: linear-gradient(135deg, rgba(255,30,40,0.25), rgba(255,74,90,0.12));
   box-shadow: var(--glow);
 }
 .run-btn:disabled { opacity: 0.4; cursor: not-allowed; }

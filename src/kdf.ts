@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { sha256 } from "@noble/hashes/sha2.js";
 import { WORDS } from "./ca";
 import type { State } from "./types";
 
@@ -12,12 +12,12 @@ export function expand(key: Buffer, label: string, bytes: number): Buffer {
   const chunks: Buffer[] = [];
   let filled = 0, counter = 0;
   while (filled < bytes) {
-    const block = createHash("sha256")
-      .update(label)
+    const block = sha256.create()
+      .update(Buffer.from(label))
       .update(Buffer.from([counter >>> 8, counter & 0xff]))
       .update(key)
       .digest();
-    chunks.push(block);
+    chunks.push(Buffer.from(block));
     filled += block.length;
     counter++;
   }

@@ -4,20 +4,20 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Palette — Blackwall Borderless (Deep Crimson/Black tones) */
-  --bg:          #070303;
-  --bg-offset:   #0a0505;
-  --bg-input:    #100808;
-  --bg-hover:    #170b0b;
+  /* Palette — High Contrast, Neutral Black with Sharp Accent */
+  --bg:          #000000;
+  --bg-offset:   #0c0c0c;
+  --bg-input:    #161616;
+  --bg-hover:    #222222;
 
-  --accent:      #b82c2c;
-  --accent-hover:#d64040;
-  --accent-mute: rgba(184, 44, 44, 0.12);
+  --accent:      #f02d3a;
+  --accent-hover:#d91e2a;
+  --accent-mute: rgba(240, 45, 58, 0.15);
 
-  --text:        #d1b8b8;
-  --text-dim:    #8f7373;
-  --text-muted:  #5e4545;
   --text-bright: #ffffff;
+  --text:        #d4d4d4;
+  --text-dim:    #8a8a8a;
+  --text-muted:  #555555;
 
   --mono:   'JetBrains Mono', monospace;
   --body:   'Inter', sans-serif;

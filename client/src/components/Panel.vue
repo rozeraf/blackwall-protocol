@@ -18,7 +18,7 @@ defineProps<{ title?: string; icon?: string }>();
 .panel {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .panel-header {
@@ -26,18 +26,26 @@ defineProps<{ title?: string; icon?: string }>();
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  padding-left: 2px;
 }
 .panel-title {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-dim);
 }
-.panel-body { 
-  background: var(--bg-offset);
+
+.panel-body {
+  background: var(--bg-surface);
   border-radius: var(--radius-lg);
   padding: 16px;
+  position: relative;
+  box-shadow: var(--shadow-panel);
+  transition: box-shadow 0.25s ease;
+}
+.panel-body:focus-within {
+  box-shadow: var(--shadow-panel), var(--glow-focus);
 }
 </style>

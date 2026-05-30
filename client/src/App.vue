@@ -24,7 +24,8 @@
           >{{ tab.label }}</button>
         </nav>
         <div class="header-end">
-          <span class="status-indicator"></span>
+          <span class="status-dot"></span>
+          <span class="status-label">online</span>
         </div>
       </div>
     </header>
@@ -68,49 +69,69 @@ const activeTab = ref('cipher');
   min-height: 100vh;
 }
 
-/* ── Header ─────────────────────────────── */
+/* ── Header ──────────────────────────────────────────────────── */
 .header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--bg);
+  background: rgba(8, 6, 8, 0.85);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255,255,255,0.03) inset;
 }
 .header-inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 24px;
-  height: 56px;
+  padding: 0 28px;
+  height: 58px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 32px;
 }
 
-/* Logo */
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo-mark { color: var(--accent); display: flex; }
-.logo-text { display: flex; align-items: baseline; gap: 6px; }
+/* ── Logo ──────────────────────────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  user-select: none;
+}
+.logo-mark {
+  color: var(--accent);
+  display: flex;
+  filter: drop-shadow(0 0 6px rgba(200, 16, 46, 0.6));
+  transition: filter 0.3s ease;
+}
+.logo:hover .logo-mark {
+  filter: drop-shadow(0 0 10px rgba(232, 32, 62, 0.85));
+}
+.logo-text { display: flex; align-items: baseline; gap: 7px; }
 .logo-name {
   font-family: var(--body);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-bright);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 .logo-ver {
   font-family: var(--mono);
-  font-size: 10px;
-  color: var(--text-muted);
+  font-size: 9px;
+  color: var(--accent-dim);
+  letter-spacing: 0.08em;
 }
 
-/* Nav */
+/* ── Nav ───────────────────────────────────────────────────────── */
 .nav {
   display: flex;
   align-items: center;
   gap: 2px;
 }
 .nav-tab {
-  padding: 6px 14px;
+  position: relative;
+  padding: 6px 16px;
   background: none;
   border: none;
   border-radius: var(--radius);
@@ -119,49 +140,71 @@ const activeTab = ref('cipher');
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: color 0.15s, background 0.15s;
+  transition: color 0.2s, background 0.2s;
+  letter-spacing: 0.01em;
 }
-.nav-tab:hover { color: var(--text); background: var(--bg-hover); }
+.nav-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 1.5px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+  border-radius: 1px;
+}
+.nav-tab:hover {
+  color: var(--text);
+  text-shadow: 0 0 12px rgba(200, 16, 46, 0.25);
+}
 .nav-tab.active {
   color: var(--text-bright);
-  background: var(--bg-input);
+  text-shadow: 0 0 16px rgba(232, 32, 62, 0.5);
 }
+.nav-tab.active::after { width: calc(100% - 24px); }
 
-/* Right side */
-.header-end { display: flex; align-items: center; }
-.status-indicator {
-  width: 6px;
-  height: 6px;
+/* ── Header right ──────────────────────────────────────────────── */
+.header-end { display: flex; align-items: center; gap: 8px; }
+.status-dot {
+  width: 7px; height: 7px;
   border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.8;
-  animation: breathe 3s ease-in-out infinite;
+  background: var(--accent-bright);
+  box-shadow: 0 0 8px rgba(200, 16, 46, 0.8);
+  animation: pulse 2.8s ease-in-out infinite;
 }
-@keyframes breathe {
-  0%, 100% { opacity: 0.5; }
-  50%       { opacity: 1; }
+.status-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.55; box-shadow: 0 0 5px rgba(200, 16, 46, 0.5); }
+  50%       { opacity: 1;    box-shadow: 0 0 12px rgba(200, 16, 46, 0.9); }
 }
 
-/* ── Main ────────────────────────────────── */
+/* ── Main ────────────────────────────────────────────────────────── */
 .main {
   flex: 1;
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
-  padding: 32px 24px 48px;
+  padding: 36px 28px 56px;
 }
 
-/* ── Footer ─────────────────────────────── */
+/* ── Footer ──────────────────────────────────────────────────────── */
 .footer {
-  background: var(--bg-offset);
-  padding: 14px 24px;
+  box-shadow: 0 -1px 24px rgba(0, 0, 0, 0.4);
+  padding: 16px 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
 }
-.footer-sep { opacity: 0.3; }
+.footer-sep { opacity: 0.25; color: var(--accent-dim); }
 </style>

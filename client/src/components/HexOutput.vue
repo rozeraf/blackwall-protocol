@@ -44,41 +44,58 @@ async function copy() {
 
 <style scoped>
 .hex-output {
-  background: var(--bg-input);
+  background: var(--bg-elevated);
   border-radius: var(--radius);
   padding: 12px 14px;
   position: relative;
-  min-height: 52px;
+  min-height: 54px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
+  box-shadow: var(--shadow-input);
+  transition: opacity 0.2s;
 }
-.hex-output.empty { opacity: 0.5; }
+.hex-output.empty { opacity: 0.4; }
 
 .hex-label {
   font-family: var(--mono);
-  font-size: 10px;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 2px;
 }
 
 .hex-value {
   font-family: var(--mono);
-  font-size: 13px;
-  color: var(--text-bright);
+  font-size: 12.5px;
+  color: var(--text);
   word-break: break-all;
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  line-height: 1.6;
-  padding-right: 40px;
+  gap: 5px;
+  line-height: 1.65;
+  padding-right: 44px;
+}
+
+.hex-chunk {
+  color: var(--text-bright);
+  opacity: 0;
+  animation: hex-in 0.25s ease forwards;
+  letter-spacing: 0.04em;
+}
+.hex-chunk:nth-child(odd) { color: var(--text); }
+
+@keyframes hex-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .hex-placeholder {
   color: var(--text-muted);
   font-size: 13px;
+  font-style: italic;
 }
 
 .copy-btn {
@@ -87,15 +104,26 @@ async function copy() {
   right: 10px;
   background: var(--bg-hover);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius);
   color: var(--text-dim);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   padding: 4px 10px;
   cursor: pointer;
-  transition: all 0.15s;
-  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.18s ease;
 }
-.copy-btn:hover { background: var(--accent-mute); color: var(--text-bright); }
-.copy-btn.copied { background: var(--accent); color: var(--text-bright); }
+.copy-btn:hover {
+  background: rgba(200, 16, 46, 0.18);
+  color: var(--accent-bright);
+  box-shadow: var(--glow-hover);
+}
+.copy-btn.copied {
+  background: rgba(200, 16, 46, 0.22);
+  color: var(--accent-bright);
+  box-shadow: var(--glow-focus);
+}
 </style>
+

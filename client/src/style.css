@@ -1,31 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* ── Reset & Base ─────────────────────────────────────────── */
+/* ── Reset & Base ──────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Palette — High Contrast, Neutral Black with Sharp Accent */
-  --bg:          #000000;
-  --bg-offset:   #0c0c0c;
-  --bg-input:    #161616;
-  --bg-hover:    #222222;
+  /* ── Palette — Blackwall Cyberpunk ─────────────────────────────
+     Sourced from image.png:
+       Core glow  : #c8102e  (neon crimson beam)
+       Warm bloom : #8b0a1e  (mid radial halo)
+       Deep shadow: #2a0008  (dark fringe)
+  ──────────────────────────────────────────────────────────────── */
 
-  --accent:      #f02d3a;
-  --accent-hover:#d91e2a;
-  --accent-mute: rgba(240, 45, 58, 0.15);
+  --bg:            #080608;       /* near-black with warm undertone  */
+  --bg-surface:    #110d0f;       /* panel base                      */
+  --bg-elevated:   #1c1318;       /* raised card / input bg          */
+  --bg-hover:      #261c22;       /* hover state                     */
 
-  --text-bright: #ffffff;
-  --text:        #d4d4d4;
-  --text-dim:    #8a8a8a;
-  --text-muted:  #555555;
+  /* Neon crimson — primary accent */
+  --accent:        #c8102e;
+  --accent-bright: #e8203e;
+  --accent-dim:    #8b0a1e;
+  --accent-mute:   rgba(200, 16, 46, 0.10);
 
-  --mono:   'JetBrains Mono', monospace;
-  --body:   'Inter', sans-serif;
+  /* Shadow / glow tokens — replaces borders */
+  --shadow-panel:  0 2px 16px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255,255,255,0.025) inset;
+  --shadow-input:  0 1px 8px rgba(0, 0, 0, 0.4);
+  --glow-focus:    0 0 0 2px rgba(200, 16, 46, 0.30), 0 0 16px rgba(200, 16, 46, 0.15);
+  --glow-hover:    0 0 12px rgba(200, 16, 46, 0.12);
+  --glow-active:   0 0 22px rgba(200, 16, 46, 0.35), 0 0 6px rgba(200, 16, 46, 0.20) inset;
 
-  --radius:    4px;
-  --radius-lg: 8px;
+  /* Semantic */
+  --success:       #3ddc84;
+  --warning:       #f59e0b;
+  --danger:        #ef4444;
+
+  /* Typography */
+  --text-bright:   #f0e8ea;
+  --text:          #a89098;
+  --text-dim:      #6e5860;
+  --text-muted:    #3d2c32;
+
+  /* Fonts */
+  --mono: 'JetBrains Mono', monospace;
+  --body: 'Inter', sans-serif;
+
+  /* Geometry */
+  --radius:    5px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
 }
 
+/* ── Base ───────────────────────────────────────────────────────── */
 html, body { height: 100%; }
 
 body {
@@ -35,47 +60,66 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 
-  /* Background: three-stop radial based on the reference image's color zones */
+  /* Multi-layer atmospheric glow from image.png */
   background-image:
-    radial-gradient(ellipse 120% 60% at 30% 0%,    rgba(180, 20, 20, 0.09) 0%, transparent 60%),
-    radial-gradient(ellipse 60%  80% at 100% 60%,  rgba(120, 10, 10, 0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 80%  50% at 50% 100%,  rgba(60,  0,  0, 0.15) 0%, transparent 60%);
+    /* Central crimson beam — horizontal */
+    radial-gradient(ellipse 80%  18% at 50% 42%,  rgba(200, 16, 46, 0.10) 0%, transparent 100%),
+    /* Top-left warm bloom */
+    radial-gradient(ellipse 55%  50% at 5%  30%,   rgba(140, 10, 30, 0.07) 0%, transparent 70%),
+    /* Right edge subtle heat */
+    radial-gradient(ellipse 40%  60% at 100% 55%,  rgba(120, 8,  25, 0.06) 0%, transparent 65%),
+    /* Bottom ambient */
+    radial-gradient(ellipse 90%  40% at 50% 100%,  rgba(40,  0,  10, 0.20) 0%, transparent 60%);
   background-attachment: fixed;
 }
 
-/* ── Subtle grid overlay ─────────────────────────────────── */
+/* ── Subtle scanline grid ───────────────────────────────────────── */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(rgba(200, 16, 46, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 16, 46, 0.015) 1px, transparent 1px);
+  background-size: 52px 52px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* ── Vignette ──────────────────────────────────────────────── */
+/* ── Vignette ───────────────────────────────────────────────────── */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.5) 100%);
+  background: radial-gradient(ellipse at center, transparent 45%, rgba(4, 2, 4, 0.65) 100%);
   pointer-events: none;
   z-index: 0;
 }
 
 #app { position: relative; z-index: 1; min-height: 100vh; }
 
-/* ── Scrollbar ─────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 4px; }
+/* ── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(220, 38, 38, 0.3); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(200, 16, 46, 0.40); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(200, 16, 46, 0.65); }
 
-/* ── Selection ─────────────────────────────────────────────── */
-::selection { background: rgba(220, 38, 38, 0.25); color: var(--text-bright); }
+/* ── Selection ──────────────────────────────────────────────────── */
+::selection { background: rgba(200, 16, 46, 0.28); color: var(--text-bright); }
 
-/* ── Global input/button resets ─────────────────────────────── */
+/* ── Typography baseline ────────────────────────────────────────── */
+button, input, textarea, select {
+  font-family: inherit;
+}
 button { cursor: pointer; }
 textarea, input { font-family: var(--mono); }
+
+/* ── Utility — mono label ───────────────────────────────────────── */
+.label-mono {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}

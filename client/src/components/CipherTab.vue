@@ -177,41 +177,42 @@ function loadDemo() {
 </script>
 
 <style scoped>
-.cipher-tab { display: flex; flex-direction: column; gap: 24px; }
+.cipher-tab { display: flex; flex-direction: column; gap: 28px; }
 
+/* ── Tab header ──────────────────────────────────── */
 .tab-header { margin-bottom: 4px; }
 .tab-title {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
   color: var(--text-bright);
-  letter-spacing: -0.01em;
-  margin-bottom: 6px;
+  letter-spacing: 0.01em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
 }
 .tab-desc {
   font-size: 13px;
   color: var(--text-dim);
-  line-height: 1.6;
+  line-height: 1.65;
   max-width: 520px;
 }
 
+/* ── Grid ────────────────────────────────────────── */
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 18px;
 }
-@media (max-width: 720px) {
-  .grid { grid-template-columns: 1fr; }
-}
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+.col { display: flex; flex-direction: column; gap: 14px; }
 
-.col { display: flex; flex-direction: column; gap: 12px; }
-
-/* Mode toggle */
+/* ── Mode toggle ─────────────────────────────────── */
 .mode-toggle {
   display: flex;
-  background: var(--bg-offset);
+  background: var(--bg-surface);
   border-radius: var(--radius-lg);
   padding: 4px;
   gap: 4px;
+  box-shadow: var(--shadow-panel);
 }
 .mode-btn {
   flex: 1;
@@ -224,14 +225,16 @@ function loadDemo() {
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.18s ease;
 }
+.mode-btn:hover { color: var(--text); background: var(--bg-hover); }
 .mode-btn.active {
-  background: var(--bg-hover);
+  background: rgba(200, 16, 46, 0.14);
   color: var(--text-bright);
+  box-shadow: 0 0 14px rgba(200, 16, 46, 0.20) inset;
 }
 
-/* Field row header */
+/* ── Field elements ──────────────────────────────── */
 .input-row {
   display: flex;
   align-items: center;
@@ -240,19 +243,21 @@ function loadDemo() {
 }
 .field-label {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 9px;
+  font-weight: 600;
   color: var(--text-dim);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 /* Segmented controls */
 .type-switch, .output-type-toggle {
   display: flex;
-  background: var(--bg-input);
+  background: var(--bg-elevated);
   border-radius: var(--radius);
   padding: 2px;
   gap: 2px;
+  box-shadow: var(--shadow-input);
 }
 .type-switch button, .output-type-toggle button {
   padding: 4px 12px;
@@ -266,59 +271,62 @@ function loadDemo() {
   transition: all 0.15s;
 }
 .type-switch button.active, .output-type-toggle button.active {
-  background: var(--bg-hover);
-  color: var(--text-bright);
+  background: rgba(200, 16, 46, 0.18);
+  color: var(--accent-bright);
+  box-shadow: 0 0 8px rgba(200, 16, 46, 0.20);
 }
 
 /* Inputs */
 .field-textarea, .field-input {
   width: 100%;
-  background: var(--bg-input);
+  background: var(--bg-elevated);
   border: none;
   border-radius: var(--radius);
   color: var(--text);
   font-family: var(--mono);
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.55;
   padding: 12px 14px;
   outline: none;
-  transition: background 0.15s;
+  box-shadow: var(--shadow-input);
+  transition: box-shadow 0.2s ease;
   resize: vertical;
 }
 .field-textarea:focus, .field-input:focus {
-  background: var(--bg-hover);
+  box-shadow: var(--glow-focus);
 }
 .field-textarea::placeholder, .field-input::placeholder {
   color: var(--text-muted);
 }
-
 .field-group { display: flex; flex-direction: column; gap: 6px; }
 
-/* Run button */
+/* ── Run button ──────────────────────────────────── */
 .run-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 14px 20px;
-  background: var(--accent-mute);
+  background: rgba(200, 16, 46, 0.10);
   border: none;
   border-radius: var(--radius-lg);
-  color: var(--accent);
+  color: var(--accent-bright);
   font-family: var(--body);
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.2s ease;
 }
 .run-btn:hover:not(:disabled) {
-  background: var(--accent);
+  background: rgba(200, 16, 46, 0.18);
+  box-shadow: var(--glow-active);
   color: var(--text-bright);
 }
-.run-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.run-btn:disabled { opacity: 0.28; cursor: not-allowed; }
 .run-icon { font-size: 14px; }
 
-/* Output */
+/* ── Output ──────────────────────────────────────── */
 .text-output {
   font-family: var(--mono);
   font-size: 13px;
@@ -328,25 +336,26 @@ function loadDemo() {
   line-height: 1.6;
 }
 
-/* Stats row */
+/* ── Stats ───────────────────────────────────────── */
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 6px;
 }
 .stat {
-  background: var(--bg-offset);
+  background: var(--bg-surface);
   border-radius: var(--radius-lg);
   padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
+  box-shadow: var(--shadow-panel);
 }
 .stat-label {
   font-family: var(--mono);
   font-size: 9px;
   color: var(--text-muted);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 .stat-value {
@@ -355,26 +364,33 @@ function loadDemo() {
   color: var(--text-bright);
   font-weight: 500;
 }
-.stat-value.accent { color: var(--accent); }
+.stat-value.accent { color: var(--accent-bright); }
 
+/* ── Demo bits ───────────────────────────────────── */
 .demo-note {
   font-size: 12px;
   color: var(--text-dim);
   margin-bottom: 8px;
+  line-height: 1.5;
 }
-
 .demo-btn {
   align-self: flex-start;
-  padding: 8px 16px;
-  background: var(--bg-offset);
+  padding: 7px 14px;
+  background: transparent;
   border: none;
   border-radius: var(--radius);
   color: var(--text-dim);
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10px;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.18s ease;
+  letter-spacing: 0.04em;
 }
-.demo-btn:hover { background: var(--bg-hover); color: var(--text-bright); }
+.demo-btn:hover {
+  background: var(--bg-elevated);
+  color: var(--text);
+  box-shadow: var(--glow-hover);
+}
+
 </style>
 

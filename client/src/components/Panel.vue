@@ -19,23 +19,21 @@ defineProps<{ title?: string; icon?: string }>();
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(8px);
-  overflow: hidden;
   transition: border-color 0.2s;
 }
-.panel:hover { border-color: rgba(220, 38, 38, 0.2); }
+.panel:hover { border-color: var(--border-hi); }
 
 .panel-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 11px 16px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border);
 }
 .panel-title {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;

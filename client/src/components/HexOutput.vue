@@ -44,7 +44,7 @@ async function copy() {
 
 <style scoped>
 .hex-output {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 12px 14px;
@@ -54,7 +54,7 @@ async function copy() {
   flex-direction: column;
   gap: 4px;
 }
-.hex-output.empty { opacity: 0.4; }
+.hex-output.empty { opacity: 0.5; }
 
 .hex-label {
   font-family: var(--mono);
@@ -67,21 +67,14 @@ async function copy() {
 
 .hex-value {
   font-family: var(--mono);
-  font-size: 12.5px;
-  color: var(--accent);
+  font-size: 13px;
+  color: var(--text-bright);
   word-break: break-all;
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  line-height: 1.7;
-  padding-right: 40px; /* space for copy button */
-}
-.hex-chunk {
-  animation: in 0.25s ease both;
-}
-@keyframes in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  line-height: 1.6;
+  padding-right: 40px;
 }
 
 .hex-placeholder {
@@ -99,11 +92,11 @@ async function copy() {
   color: var(--text-muted);
   font-family: var(--mono);
   font-size: 10px;
-  padding: 2px 8px;
+  padding: 3px 8px;
   cursor: pointer;
   transition: all 0.15s;
   letter-spacing: 0.04em;
 }
-.copy-btn:hover { border-color: rgba(220,38,38,0.3); color: var(--text-dim); }
-.copy-btn.copied { border-color: rgba(220,38,38,0.3); color: #f87171; }
+.copy-btn:hover { border-color: var(--border-hi); color: var(--text-dim); }
+.copy-btn.copied { border-color: var(--accent); color: var(--accent); }
 </style>

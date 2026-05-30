@@ -6,27 +6,27 @@
 :root {
   /* Palette — derived from reference: deep matte black with crimson accent */
   --bg:          #080404;
-  --bg2:         #0e0606;
-  --surface:     rgba(255, 255, 255, 0.03);
-  --surface-hi:  rgba(255, 255, 255, 0.06);
-  --border:      rgba(255, 255, 255, 0.07);
-  --border-hi:   rgba(220, 38, 38, 0.45);
+  --bg2:         #0b0606;
+  --surface:     rgba(15, 10, 10, 0.6);
+  --surface-hi:  rgba(25, 15, 15, 0.8);
+  --border:      rgba(255, 255, 255, 0.04);
+  --border-hi:   rgba(255, 255, 255, 0.12);
 
-  --accent:      #dc2626;
-  --accent-dim:  rgba(220, 38, 38, 0.6);
-  --accent-mute: rgba(220, 38, 38, 0.12);
-  --danger:      #f59e0b;
+  --accent:      #b82c2c;
+  --accent-dim:  rgba(184, 44, 44, 0.5);
+  --accent-mute: rgba(184, 44, 44, 0.1);
+  --danger:      #d97706;
 
-  --text:        #c9b8b8;
-  --text-dim:    #6b5555;
-  --text-muted:  #4a3535;
-  --text-bright: #f5eded;
+  --text:        #a89898;
+  --text-dim:    #756060;
+  --text-muted:  #503a3a;
+  --text-bright: #e8dede;
 
   --mono:   'JetBrains Mono', monospace;
   --body:   'Inter', sans-serif;
 
-  --radius:    8px;
-  --radius-lg: 12px;
+  --radius:    6px;
+  --radius-lg: 10px;
 }
 
 html, body { height: 100%; }

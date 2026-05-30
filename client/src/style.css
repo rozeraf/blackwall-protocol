@@ -4,19 +4,19 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Palette — True Borderless Minimal */
-  --bg:          #0a0a0a;
-  --bg-offset:   #111111;
-  --bg-input:    #1a1a1a;
-  --bg-hover:    #222222;
+  /* Palette — Blackwall Borderless (Deep Crimson/Black tones) */
+  --bg:          #070303;
+  --bg-offset:   #0a0505;
+  --bg-input:    #100808;
+  --bg-hover:    #170b0b;
 
-  --accent:      #b93535;
+  --accent:      #b82c2c;
   --accent-hover:#d64040;
-  --accent-mute: rgba(185, 53, 53, 0.1);
+  --accent-mute: rgba(184, 44, 44, 0.12);
 
-  --text:        #cccccc;
-  --text-dim:    #808080;
-  --text-muted:  #555555;
+  --text:        #d1b8b8;
+  --text-dim:    #8f7373;
+  --text-muted:  #5e4545;
   --text-bright: #ffffff;
 
   --mono:   'JetBrains Mono', monospace;
